@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace="它是映射文件的唯一标识"-相当于配置文件的主键 mapper接口调用方式，表明mapper接口/映射文件/表映射关系，用接口的全路径名称 -->
+<mapper namespace="com.yy.mapper.FoodMapper">
+	<select id="findFoodByPage" resultType="com.yy.pojo.Food">
+		select * from tb_food
+		limit #{start},#{rows}
+	</select>
+	<!--批量修改状态 -->
+	<update id="updateStatus">
+		update tb_food set status =#{status}
+		where id in
+		<foreach collection="ids" open="(" close=")" item="id"
+			separator=",">
+			#{id}
+		</foreach>
+	</update>
+	<delete id="deleteFoods">
+		delete from tb_food where id in
+		<foreach collection="ids" open="(" close=")" item="id"
+			separator=",">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--配置的顺序 Content Model : (properties?, settings?, typeAliases?, typeHandlers?, 
+		objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, environments?, 
+		databaseIdProvider?, mappers?) -->
+	<!--开启驼峰规则 对象 表 属性 字段 id id userId user_id 下划线去掉，下划线后的首字母大写 说明：当查询sql返回结果时，会自动根据驼峰规则实现字段和属性的一一映射 -->
+	<settings>
+		<!-- 开启驼峰自动映射 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<plugins>
+		<!-- 通用Mapper插件 -->
+		<plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			<!--主键自增回写方法,默认值MYSQL,详细说明请看文档 -->
+			<property name="IDENTITY" value="MYSQL" />
+			<!--通用Mapper接口，多个通用接口用逗号隔开 -->
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
+	</plugins>
+</configuration>
