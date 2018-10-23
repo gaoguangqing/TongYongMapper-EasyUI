@@ -131,6 +131,7 @@ spring-mybatis.xml
 </beans>
 ```
 ## 2.在mybatis配置文件中添加```<plugins>```，这是通用Mapper第二个关键设置！
+mybatis-config.xml
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -157,6 +158,8 @@ spring-mybatis.xml
 </configuration>
 ```
 ## 3.建库建表，表的名字tb_food。表有了以后要写对应的pojo,这里是Food,注意pojo的定义要有@Table注解定义表名，@Id注解定义主键，@GeneratedValue(strategy=GenerationType.IDENTITY)注解定义主键自增。这是通用Mapper第三个关键设置！
+
+下面是数据库表tb_food
 ```
 root@localhost:store_yh>desc tb_food;
 +--------+-------------+------+-----+---------+----------------+
