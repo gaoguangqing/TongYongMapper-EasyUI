@@ -1,13 +1,18 @@
 # TongYongMapper-EasyUI
 通用Mapper实现增删改查和EasyUI展示
 
-## 1.引入通用mapper的maven依赖，这是通用Mapper第一个关键设置！
+## 1.引入通用mapper的maven依赖，和配置spring整合mybatis的包扫描，的这是通用Mapper第一个关键设置！
 ```
 <dependency>
-			<groupId>com.github.abel533</groupId>
-			<artifactId>mapper</artifactId>
-			<version>2.3.2</version>
+	<groupId>com.github.abel533</groupId>
+	<artifactId>mapper</artifactId>
+	<version>2.3.2</version>
 </dependency>
+```
+```
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="com.yy.mapper"></property>
+</bean>
 ```
 当然如果你是完整的ssm项目
 那么可以按照如下代码写pom.xml
@@ -76,6 +81,51 @@
 		</dependency>
 	</dependencies>
 </project>
+```
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="  
+       http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+       http://www.springframework.org/schema/mvc   
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd   
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd   
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-4.3.xsd
+       http://www.springframework.org/schema/data/jpa 
+       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<util:properties id="cfg" location="classpath:config.properties"></util:properties>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close" lazy-init="false">
+		<property name="driverClassName" value="#{cfg.jdbcDriver}"></property>
+		<property name="url" value="#{cfg.jdbcUrl}"></property>
+		<property name="username" value="#{cfg.jdbcUsername}"></property>
+		<property name="password" value="#{cfg.jdbcPassword}"></property>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="1800" />
+		<property name="MaxActive" value="10" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.yy.mapper"></property>
+	</bean>
+	<!--整合SqlSessionFactoryBean对象(通过此对象创建SqlSession) -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		lazy-init="true">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml" />
+	</bean>
+</beans>
 ```
 ## 2.在mybatis配置文件中添加```<plugins>```，这是通用Mapper第二个关键设置！
 ```
