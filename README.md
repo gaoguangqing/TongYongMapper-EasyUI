@@ -1,7 +1,7 @@
 # TongYongMapper-EasyUI
 通用Mapper实现增删改查和EasyUI展示
 
-## 1.引入通用mapper的maven依赖和配置spring整合mybatis的包扫描，这是通用Mapper第一个关键设置！
+## 1.引入通用mapper的`maven依赖`和配置spring整合`mybatis的包扫描`，这是通用Mapper第一个关键设置！
 pom.xml
 ```
 <dependency>
@@ -130,7 +130,7 @@ spring-mybatis.xml
 	</bean>
 </beans>
 ```
-## 2.在mybatis配置文件中添加```<plugins>```，这是通用Mapper第二个关键设置！
+## 2.在mybatis配置文件中添加`<plugins>`，这是通用Mapper第二个关键设置！
 mybatis-config.xml
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -157,7 +157,7 @@ mybatis-config.xml
 	</plugins>
 </configuration>
 ```
-## 3.建库建表，表的名字tb_food。表有了以后要写对应的pojo,这里是Food,注意pojo的定义要有@Table注解定义表名，@Id注解定义主键，@GeneratedValue(strategy=GenerationType.IDENTITY)注解定义主键自增。这是通用Mapper第三个关键设置！
+## 3.建库建表，表的名字tb_food。表有了以后要写对应的pojo,这里是Food,注意pojo的定义要有`@Table`注解定义表名，`@Id`注解定义主键，`@GeneratedValue(strategy=GenerationType.IDENTITY)`注解定义主键自增。这是通用Mapper第三个关键设置！
 
 下面是数据库表tb_food
 ```
@@ -171,17 +171,17 @@ root@localhost:store_yh>desc tb_food;
 | status | tinyint(4)  | YES  |     | 1       |                |
 +--------+-------------+------+-----+---------+----------------+
 ```
-> 1.表名默认使用类名,驼峰转下划线(只对大写字母进行处理),如Food默认对应的表名为tb_food。
+		> 1.表名默认使用类名,驼峰转下划线(只对大写字母进行处理),如Food默认对应的表名为tb_food。
 
-> 2.表名可以使用@Table(name= "tableName")进行指定,对不符合第一条默认规则的可以通过这种方式指定表名。
+		> 2.表名可以使用@Table(name= "tableName")进行指定,对不符合第一条默认规则的可以通过这种方式指定表名。
 
-> 3.字段默认和@Column一样,都会作为表字段,表字段默认为Java对象的Field名字驼峰转下划线形式。
+		> 3.字段默认和@Column一样,都会作为表字段,表字段默认为Java对象的Field名字驼峰转下划线形式。
 
-> 4.可以使用@Column(name= "fieldName")指定不符合第3条规则的字段名。
+		> 4.可以使用@Column(name= "fieldName")指定不符合第3条规则的字段名。
 
-> 5.使用@Transient注解可以忽略字段,添加该注解的字段不会作为表字段使用。
+		> 5.使用@Transient注解可以忽略字段,添加该注解的字段不会作为表字段使用。
 
-> 6.建议一定是有一个@Id注解作为主键的字段,可以有多个@Id注解的字段作为联合主键。
+		> 6.建议一定是有一个@Id注解作为主键的字段,可以有多个@Id注解的字段作为联合主键。
 
 ```
 package com.yy.pojo;
@@ -238,7 +238,7 @@ public class Food implements Serializable{
 }
 ```
 ## 4.接着就要把ssm环境配置好，各个配置文件，请参照项目配置，这里不再赘述。
-## 5.写Mapper继承```Mapper<T>```这是通用Mapper第四个关键的设置！
+## 5.写Mapper继承`Mapper<T>`这是通用Mapper第四个关键的设置！
 ```
 package com.yy.mapper;
 
