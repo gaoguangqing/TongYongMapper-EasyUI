@@ -1,7 +1,7 @@
 # TongYongMapper-EasyUI
 通用Mapper实现增删改查和EasyUI展示
 
-## 1.引入通用mapper的maven依赖
+## 1.引入通用mapper的maven依赖，这是通用Mapper第一个关键设置！
 ```
 <dependency>
 			<groupId>com.github.abel533</groupId>
@@ -77,7 +77,7 @@
 	</dependencies>
 </project>
 ```
-## 2.在mybatis配置文件中添加```<plugins>```
+## 2.在mybatis配置文件中添加```<plugins>```，这是通用Mapper第二个关键设置！
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -103,7 +103,7 @@
 	</plugins>
 </configuration>
 ```
-## 3.建库建表，表的名字tb_food。表有了以后要写对应的pojo,这里是Food,注意pojo的定义要有@Table注解定义表名，@Id注解定义主键，@GeneratedValue(strategy=GenerationType.IDENTITY)注解定义主键自增
+## 3.建库建表，表的名字tb_food。表有了以后要写对应的pojo,这里是Food,注意pojo的定义要有@Table注解定义表名，@Id注解定义主键，@GeneratedValue(strategy=GenerationType.IDENTITY)注解定义主键自增。这是通用Mapper第三个关键设置！
 ```
 root@localhost:store_yh>desc tb_food;
 +--------+-------------+------+-----+---------+----------------+
@@ -170,7 +170,7 @@ public class Food implements Serializable{
 }
 ```
 ## 4.接着就要吧ssm环境配置好，各个配置文件，请参照项目配置，这里不再赘述。
-## 5.写Mapper继承```Mapper<T>```这是通用Mapper第二个关键的设置
+## 5.写Mapper继承```Mapper<T>```这是通用Mapper第四个关键的设置！
 ```
 package com.yy.mapper;
 
@@ -282,7 +282,7 @@ public class EasyUIResult {
 
 }
 ```
-## 7.接着就是写你的Servies实现类了,笔者的saveFood，updateFood用的都是通用Mapper
+## 7.接着就是写你的Servies实现类了,笔者的saveFood，updateFood用的都是通用Mapper，其他方法因为通用Mapper只支持单表的增删改(不分页的)查，所以笔者自己定义了一些方法，注意区分。
 ```
 package com.yy.service;
 
