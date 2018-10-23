@@ -335,7 +335,7 @@ public class FoodServiceImpl implements FoodService {
 
 }
 ```
-##8.如果你是SSM项目，那么就要写Controller来调用Service,注意SysResult也是笔者写的工具类，视情况使用。具体如下
+## 8.如果你是SSM项目，那么就要写Controller来调用Service,注意SysResult也是笔者写的工具类，视情况使用。具体如下
 ```
 package com.yy.controller;
 
