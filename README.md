@@ -169,7 +169,7 @@ public class Food implements Serializable{
 	
 }
 ```
-## 4.接着就要吧ssm环境配置好，各个配置文件，请参照项目配置，这里不再赘述。
+## 4.接着就要把ssm环境配置好，各个配置文件，请参照项目配置，这里不再赘述。
 ## 5.写Mapper继承```Mapper<T>```这是通用Mapper第四个关键的设置！
 ```
 package com.yy.mapper;
