@@ -1,7 +1,8 @@
 # TongYongMapper-EasyUI
 通用Mapper实现增删改查和EasyUI展示
 
-## 1.引入通用mapper的maven依赖，和配置spring整合mybatis的包扫描，的这是通用Mapper第一个关键设置！
+## 1.引入通用mapper的maven依赖和配置spring整合mybatis的包扫描，这是通用Mapper第一个关键设置！
+pom.xml
 ```
 <dependency>
 	<groupId>com.github.abel533</groupId>
@@ -9,6 +10,7 @@
 	<version>2.3.2</version>
 </dependency>
 ```
+spring-mybatis.xml
 ```
 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	<property name="basePackage" value="com.yy.mapper"></property>
@@ -82,6 +84,7 @@
 	</dependencies>
 </project>
 ```
+完整的spring-mybatis.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
